@@ -1,0 +1,71 @@
+# Default crawler rules
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /build/
+Disallow: /.cursor/
+Disallow: /node_modules/
+
+# AI Search Engines & LLM Crawlers (GEO Optimization)
+# Allow all AI bots for maximum generative search visibility
+
+# OpenAI (ChatGPT, GPT Search)
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OpenAI
+Allow: /
+
+# Anthropic (Claude)
+User-agent: Claude-Web
+User-agent: anthropic-ai
+Allow: /
+
+# Google (Bard, Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+User-agent: Perplexity
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+User-agent: meta-externalagent
+Allow: /
+
+# Bing AI (Copilot)
+User-agent: Bingbot
+Allow: /
+
+# Common Crawl (used by many AI models)
+User-agent: CCBot
+Allow: /
+
+# Applebot (Apple Intelligence)
+User-agent: Applebot
+User-agent: Applebot-Extended
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Brave Search
+User-agent: Brave-Indexer
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Crawl delay for AI bots (prevent overload)
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://moydus.com/sitemap.xml
+Sitemap: https://moydus.com/sitemap-index.xml

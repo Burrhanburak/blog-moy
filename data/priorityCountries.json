@@ -1,0 +1,221 @@
+{
+  "priorityCountries": [
+    {
+      "name": "United States",
+      "iso2": "US",
+      "currency": "USD",
+      "priorityScore": 10,
+      "languages": ["en"],
+      "topStatesCities": [
+        {"state": "California", "cities": ["Los Angeles", "San Francisco"]},
+        {"state": "New York", "cities": ["New York City"]},
+        {"state": "Texas", "cities": ["Houston", "Dallas"]},
+        {"state": "Florida", "cities": ["Miami"]},
+        {"state": "Massachusetts", "cities": ["Boston"]},
+        {"state": "Washington", "cities": ["Seattle"]},
+        {"state": "Georgia", "cities": ["Atlanta"]},
+        {"state": "Illinois", "cities": ["Chicago"]}
+      ]
+    },
+    {
+      "name": "United Kingdom",
+      "iso2": "GB",
+      "currency": "GBP",
+      "priorityScore": 9,
+      "languages": ["en"],
+      "topStatesCities": [
+        {"state": "Westminster", "cities": ["London"]},
+        {"state": "Birmingham", "cities": ["Birmingham"]},
+        {"state": "Stockport", "cities": ["Manchester"]}
+      ]
+    },
+    {
+      "name": "Germany",
+      "iso2": "DE",
+      "currency": "EUR",
+      "priorityScore": 9,
+      "languages": ["de", "en"],
+      "topStatesCities": [
+        {"state": "Berlin", "cities": ["Berlin"]},
+        {"state": "Bavaria", "cities": ["Munich"]},
+        {"state": "North Rhine-Westphalia", "cities": ["Köln"]},
+        {"state": "Baden-Württemberg", "cities": ["Stuttgart"]}
+      ]
+    },
+    {
+      "name": "Japan",
+      "iso2": "JP",
+      "currency": "JPY",
+      "priorityScore": 9,
+      "languages": ["ja", "en"],
+      "topStatesCities": [
+        {"state": "Tokyo", "cities": ["Tokyo"]},
+        {"state": "Ōsaka", "cities": ["Osaka"]}
+      ]
+    },
+    {
+      "name": "Singapore",
+      "iso2": "SG",
+      "currency": "SGD",
+      "priorityScore": 9,
+      "languages": ["en", "zh"],
+      "topStatesCities": [
+        {"state": "Central Singapore", "cities": ["Singapore"]}
+      ]
+    },
+    {
+      "name": "Switzerland",
+      "iso2": "CH",
+      "currency": "CHF",
+      "priorityScore": 9,
+      "languages": ["de", "fr", "en"],
+      "topStatesCities": [
+        {"state": "Zürich", "cities": ["Zürich"]},
+        {"state": "Geneva", "cities": ["Geneva"]},
+        {"state": "Vaud", "cities": ["Lausanne"]},
+        {"state": "Basel-Stadt", "cities": ["Basel"]},
+        {"state": "Zug", "cities": ["Zug"]}
+      ]
+    },
+    {
+      "name": "Canada",
+      "iso2": "CA",
+      "currency": "CAD",
+      "priorityScore": 8,
+      "languages": ["en", "fr"],
+      "topStatesCities": [
+        {"state": "Ontario", "cities": ["Toronto", "Ottawa", "Mississauga"]},
+        {"state": "British Columbia", "cities": ["Vancouver", "Victoria", "Surrey"]},
+        {"state": "Quebec", "cities": ["Montréal", "Québec"]},
+        {"state": "Alberta", "cities": ["Calgary", "Edmonton"]},
+        {"state": "Manitoba", "cities": ["Winnipeg"]}
+      ]
+    },
+    {
+      "name": "France",
+      "iso2": "FR",
+      "currency": "EUR",
+      "priorityScore": 8,
+      "languages": ["fr", "en"],
+      "topStatesCities": [
+        {"state": "Île-de-France", "cities": ["Paris"]},
+        {"state": "Auvergne-Rhône-Alpes", "cities": ["Lyon", "Grenoble", "Saint-Étienne"]},
+        {"state": "Provence-Alpes-Côte-d’Azur", "cities": ["Marseille", "Nice", "Cannes"]},
+        {"state": "Occitanie", "cities": ["Toulouse", "Montpellier"]},
+        {"state": "Nouvelle-Aquitaine", "cities": ["Bordeaux", "Limoges"]}
+      ]
+    },
+    {
+      "name": "Australia",
+      "iso2": "AU",
+      "currency": "AUD",
+      "priorityScore": 8,
+      "languages": ["en"],
+      "topStatesCities": [
+        {"state": "New South Wales", "cities": ["Sydney", "Newcastle"]},
+        {"state": "Victoria", "cities": ["Melbourne", "Geelong"]},
+        {"state": "Queensland", "cities": ["Brisbane", "Gold Coast", "Cairns"]},
+        {"state": "Western Australia", "cities": ["Perth", "Fremantle"]},
+        {"state": "South Australia", "cities": ["Adelaide", "Port Augusta"]}
+      ]
+    },
+    {
+      "name": "Netherlands",
+      "iso2": "NL",
+      "currency": "EUR",
+      "priorityScore": 8,
+      "languages": ["nl", "en"],
+      "topStatesCities": [
+        {"state": "North Holland", "cities": ["Amsterdam", "Haarlem"]},
+        {"state": "South Holland", "cities": ["Rotterdam", "The Hague"]},
+        {"state": "Utrecht", "cities": ["Utrecht"]},
+        {"state": "North Brabant", "cities": ["Eindhoven", "Tilburg", "Breda"]},
+        {"state": "Gelderland", "cities": ["Arnhem", "Nijmegen"]}
+      ]
+    },
+    {
+      "name": "South Korea",
+      "iso2": "KR",
+      "currency": "KRW",
+      "priorityScore": 8,
+      "languages": ["ko", "en"],
+      "topStatesCities": [
+        {"state": "Seoul", "cities": ["Seoul"]},
+        {"state": "Gyeonggi", "cities": ["Suwon"]},
+        {"state": "Busan", "cities": ["Busan"]},
+        {"state": "Incheon", "cities": ["Incheon"]},
+        {"state": "Daegu", "cities": ["Daegu"]}
+      ]
+    },
+    {
+      "name": "United Arab Emirates",
+      "iso2": "AE",
+      "currency": "AED",
+      "priorityScore": 8,
+      "languages": ["ar", "en"],
+      "topStatesCities": [
+        {"state": "Dubai", "cities": ["Dubai"]},
+        {"state": "Abu Dhabi", "cities": ["Abu Dhabi", "Al Ain City"]},
+        {"state": "Sharjah", "cities": ["Sharjah"]},
+        {"state": "Ras Al Khaimah", "cities": ["Ras Al Khaimah"]},
+        {"state": "Ajman", "cities": ["Ajman"]}
+      ]
+    },
+    {
+      "name": "Saudi Arabia",
+      "iso2": "SA",
+      "currency": "SAR",
+      "priorityScore": 7,
+      "languages": ["ar", "en"],
+      "topStatesCities": [
+        {"state": "Riyadh", "cities": ["Riyadh"]},
+        {"state": "Makkah", "cities": ["Jeddah", "Mecca"]},
+        {"state": "Eastern Province", "cities": ["Dammam", "Khobar"]},
+        {"state": "Al Madinah", "cities": ["Medina"]},
+        {"state": "Al-Qassim", "cities": ["Buraydah"]}
+      ]
+    },
+    {
+      "name": "Sweden",
+      "iso2": "SE",
+      "currency": "SEK",
+      "priorityScore": 7,
+      "languages": ["sv", "en"],
+      "topStatesCities": [
+        {"state": "Stockholm", "cities": ["Stockholm"]},
+        {"state": "Skåne", "cities": ["Malmö", "Helsingborg"]},
+        {"state": "Västra Götaland", "cities": ["Göteborg", "Borås"]},
+        {"state": "Uppsala", "cities": ["Uppsala"]},
+        {"state": "Östergötland", "cities": ["Linköping", "Norrköping"]}
+      ]
+    },
+    {
+      "name": "Norway",
+      "iso2": "NO",
+      "currency": "NOK",
+      "priorityScore": 7,
+      "languages": ["no", "en"],
+      "topStatesCities": [
+        {"state": "Oslo", "cities": ["Oslo"]},
+        {"state": "Vestland", "cities": ["Bergen"]},
+        {"state": "Rogaland", "cities": ["Stavanger", "Sandnes"]},
+        {"state": "Trøndelag", "cities": ["Trondheim"]},
+        {"state": "Agder", "cities": ["Kristiansand"]}
+      ]
+    },
+    {
+      "name": "Denmark",
+      "iso2": "DK",
+      "currency": "DKK",
+      "priorityScore": 7,
+      "languages": ["da", "en"],
+      "topStatesCities": [
+        {"state": "Denmark", "cities": ["Copenhagen"]},
+        {"state": "Central Denmark", "cities": ["Aarhus"]},
+        {"state": "Southern Denmark", "cities": ["Odense"]},
+        {"state": "North Denmark", "cities": ["Aalborg"]},
+        {"state": "Zealand", "cities": ["Roskilde"]}
+      ]
+    }
+  ]
+}

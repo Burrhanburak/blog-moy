@@ -1,0 +1,44 @@
+[
+  {
+    "cca2": "US",
+    "currencies": {
+      "USD": { "symbol": "$", "name": "US Dollar" }
+    },
+    "languages": { "eng": "English" }
+  },
+  {
+    "cca2": "GB",
+    "currencies": {
+      "GBP": { "symbol": "£", "name": "Pound Sterling" }
+    },
+    "languages": { "eng": "English" }
+  },
+  {
+    "cca2": "CA",
+    "currencies": {
+      "CAD": { "symbol": "$", "name": "Canadian Dollar" }
+    },
+    "languages": { "eng": "English", "fra": "French" }
+  },
+  {
+    "cca2": "AU",
+    "currencies": {
+      "AUD": { "symbol": "$", "name": "Australian Dollar" }
+    },
+    "languages": { "eng": "English" }
+  },
+  {
+    "cca2": "SG",
+    "currencies": {
+      "SGD": { "symbol": "$", "name": "Singapore Dollar" }
+    },
+    "languages": { "eng": "English", "zho": "Chinese" }
+  },
+  {
+    "cca2": "AE",
+    "currencies": {
+      "AED": { "symbol": "د.إ", "name": "UAE Dirham" }
+    },
+    "languages": { "ara": "Arabic", "eng": "English" }
+  }
+]

@@ -1,0 +1,721 @@
+---
+templateKey: "city-category"
+description: "Reusable MDX template for programmatic city & category pages optimized for SEO and geo-targeting."
+keywords:
+  [
+    "{city.name} {category.title}",
+    "{city.name} web design",
+    "{state.name} SEO services",
+    "{city.name} Shopify development",
+    "{state.name} WordPress development",
+    "{city.name} digital marketing",
+    "{state.name} e-commerce development",
+    "{city.name} app development",
+    "{state.name} social media marketing",
+    "{city.name} ads management",
+    "{year}",
+    "custom website development near {city.name}",
+    "{country.name} {category.title}",
+    "{state.name} CRM solutions",
+    "{city.name} ERP solutions",
+    "{city.name} content marketing",
+    "{state.name} email marketing",
+  ]
+title: "Best {category.title} Services in {city.name}, {state.name} ({year})"
+dynamicTitle: "Best {category.title} Services in {city.name}, {state.name} ({year})"
+dynamicMetaTitle: "Top {category.title} Services in {city.name}, {state.name} ({year})"
+dynamicMetaDescription: "Discover expert {category.title} services in {city.name}, {state.name} for {year}. Specializing in web design, SEO, Shopify, WordPress, and digital marketing for {country.name} businesses."
+dynamicOGTitle: "Top {category.title} Services in {city.name}, {state.name} ({year})"
+dynamicOGDescription: "Explore professional {category.title} services in {city.name}, {state.name}, including web design, SEO, Shopify, and digital marketing for {country.name} in {year}."
+dynamicPrimaryKeywords:
+  [
+    "{category.title}",
+    "{city.name} {category.title}",
+    "{state.name} {category.title}",
+    "{city.name} web design",
+    "{state.name} SEO services",
+    "{city.name} Shopify development",
+    "{state.name} WordPress development",
+  ]
+dynamicSecondaryKeywords:
+  [
+    "{city.name} digital marketing",
+    "{state.name} e-commerce development",
+    "{city.name} app development",
+    "{state.name} social media marketing",
+    "{city.name} ads management",
+    "{year}",
+  ]
+dynamicCategories:
+  [
+    "{category.title}",
+    "{city.name}",
+    "{state.name}",
+    "{country.name}",
+    "web design",
+    "SEO",
+    "Shopify development",
+    "WordPress development",
+  ]
+dynamicServices:
+  [
+    "{category.title}",
+    "{city.name} web design",
+    "{state.name} SEO services",
+    "{city.name} Shopify development",
+    "{state.name} WordPress development",
+    "{city.name} digital marketing",
+    "{state.name} e-commerce development",
+  ]
+dynamicRelatedServices:
+  [
+    "{city.name} app development",
+    "{state.name} SaaS panel management",
+    "{city.name} social media marketing",
+    "{state.name} content marketing",
+    "{city.name} email marketing",
+    "{state.name} ads management",
+  ]
+dynamicFAQs:
+  [
+    "{city.name} {category.title} FAQs",
+    "{state.name} SEO services FAQs",
+    "{city.name} Shopify development FAQs",
+    "{state.name} WordPress development FAQs",
+  ]
+dynamicTestimonials:
+  [
+    "{city.name} {category.title} testimonials",
+    "{state.name} digital marketing reviews",
+    "{city.name} e-commerce success stories",
+  ]
+---
+
+import Image from "next/image";
+import Link from "next/link";
+import { Info, Note } from "@/components/mintlify/Callouts";
+import { Compare } from "@/components/mdx/enhanced/Compare";
+import { RelatedCities } from "@/components/mdx/enhanced/RelatedCities";
+import Accordion from "@/components/mintlify/Accordion";
+import CardGrid from "@/components/CardGrid";
+import { JsonLd } from "@/components/mdx/enhanced/JsonLd";
+import {
+  Rocket,
+  DollarSign,
+  Calendar,
+  Zap,
+  BookOpen,
+  Home,
+  Building2,
+  Megaphone,
+} from "lucide-react";
+
+export default function CityCategoryTemplate({
+  city,
+  state,
+  country,
+  category,
+  year,
+  intro,
+  keyTakeaways = [],
+  providers = [],
+  pricing,
+  pricingRange,
+  pricingNotes = [],
+  insights = [],
+  faqs = [],
+  relatedCities = [],
+  relatedCategories = [],
+  compareLinks = [],
+  nearbyAreas = [],
+  relatedPosts = [],
+  cta,
+  jsonLd,
+  sections = [],
+  topicCluster,
+  dynamicImage,
+}) {
+  const linkClass =
+    "underline decoration-dotted underline-offset-4 text-[#ff4d00] hover:text-blue-700";
+
+const slugify = (value) =>
+(value || "")
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g, "")
+.replace(/[^a-z0-9]+/g, "-")
+.replace(/(^-|-$)+/g, "");
+
+const countrySlug = country?.slug || slugify(country?.name);
+const stateSlug = state?.slug || slugify(state?.name);
+const citySlug = city?.slug || slugify(city?.name);
+
+const makeCityCategoryPath = (categoryKey) => {
+const segments = [countrySlug, stateSlug, citySlug].filter(Boolean);
+if (categoryKey) {
+segments.push(categoryKey);
+}
+return segments.length ? `/${segments.join("/")}` : "/";
+};
+
+const statePath =
+countrySlug && stateSlug ? `/${countrySlug}/${stateSlug}` : undefined;
+
+const cityCategoryHref = makeCityCategoryPath(category.key);
+const citySeoHref = makeCityCategoryPath("seo-services");
+const cityShopifyHref = makeCityCategoryPath("shopify-development");
+const cityWordpressHref = makeCityCategoryPath("wordpress-development");
+const cityDigitalMarketingHref = makeCityCategoryPath("digital-marketing");
+const cityEcommerceHref = makeCityCategoryPath("ecommerce-development");
+const cityAppHref = makeCityCategoryPath("app-development");
+const citySocialHref = makeCityCategoryPath("social-media-marketing");
+const cityAdsHref = makeCityCategoryPath("ppc-ads");
+const cityCustomWebHref = makeCityCategoryPath("custom-web-development");
+const cityCrmHref = makeCityCategoryPath("crm-development");
+const cityErpHref = makeCityCategoryPath("erp-software");
+const cityContentHref = makeCityCategoryPath("content-marketing");
+const cityEmailHref = makeCityCategoryPath("email-marketing");
+
+const imageFallbacks = [
+dynamicImage,
+category?.key ? `/images/${category.key}.png` : undefined,
+"/images/web-design.png",
+].filter(Boolean);
+const articleImage = imageFallbacks[0] ?? "/images/web-design.png";
+
+const keywordLinks = [
+{ label: `${city.name} ${category.title.toLowerCase()}`, href: cityCategoryHref },
+{ label: `${city.name} web design`, href: makeCityCategoryPath("web-design") },
+{ label: `${state.name} SEO services`, href: statePath || citySeoHref },
+{ label: `${city.name} Shopify development`, href: cityShopifyHref },
+{ label: `${state.name} WordPress development`, href: statePath || cityWordpressHref },
+{ label: `${city.name} digital marketing`, href: cityDigitalMarketingHref },
+{ label: `${state.name} e-commerce development`, href: statePath || cityEcommerceHref },
+{ label: `${city.name} app development`, href: cityAppHref },
+{ label: `${state.name} social media marketing`, href: statePath || citySocialHref },
+{ label: `${city.name} ads management`, href: cityAdsHref },
+{
+label: `Custom website development near ${city.name}`,
+href: cityCustomWebHref,
+},
+{
+label: `${country.name} ${category.title.toLowerCase()}`,
+href: cityCategoryHref,
+},
+{
+label: `${state.name} CRM solutions`,
+href: statePath || cityCrmHref,
+},
+{
+label: `${city.name} ERP solutions`,
+href: cityErpHref,
+},
+{
+label: `${city.name} content marketing`,
+href: cityContentHref,
+},
+{
+label: `${state.name} email marketing`,
+href: statePath || cityEmailHref,
+},
+].filter((item) => Boolean(item.href));
+
+const keywordListMarkup = (
+
+<div className="mt-5 text-base leading-7 text-gray-700">
+  <p className="text-sm font-semibold uppercase tracking-wide text-slate-700">
+    {city.name} growth keywords we activate
+  </p>
+  <ul className="mt-2 grid gap-2 text-gray-700 sm:grid-cols-2">
+    {keywordLinks.map((keyword, index) => (
+      <li key={`${keyword.label}-${index}`} className="flex items-start gap-2">
+        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#ff4d00]" />
+        <Link
+          href={keyword.href}
+          className="text-gray-800 font-medium hover:text-[#ff4d00]"
+        >
+          {keyword.label}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
+);
+
+const articleParagraphs = [
+`Moydus partners with ambitious teams in <strong>${city.name}</strong> to deliver measurable <strong>${category.title.toLowerCase()}</strong> growth. We blend conversion-led <strong>${city.name} web design</strong>, localized SEO, and commerce execution so you outrun regional competitors in ${state.name}.`,
+
+<p key="roadmap" className="text-base leading-7 text-gray-700">
+  Every engagement starts with a discovery sprint covering funnels, analytics,
+  and positioning. Within two weeks we present an action plan, then execute a{" "}
+  {state.name}-ready rollout that ships in <strong>6–12 weeks</strong> with
+  measurable milestones.{" "}
+  <Link href={cityCategoryHref} className={linkClass}>
+    Book a {city.name} roadmap session
+  </Link>
+  .
+</p>
+, keywordListMarkup, `Post-launch, we maintain momentum with retention campaigns,
+experimentation, and revenue reporting tuned to ${city.name}'s buyer behavior. The
+result: faster cycles, stronger lead velocity, and a marketing engine that compounds
+year over year.`, ];
+
+const articleHighlights = [
+`${city.name} web design that reflects local user journeys`,
+`${state.name} SEO playbooks for map packs and organic visibility`,
+`${city.name} Shopify & e-commerce builds wired for conversions`,
+`${state.name} demand generation across paid, social, and lifecycle`,
+];
+
+const articleStats = [
+{
+label: "Launch cadence",
+value: "6–12 week rollout with weekly check-ins",
+},
+{
+label: "Typical retainers",
+value: pricingRange || pricing?.retainer || "$1.5k–$5k / month",
+},
+{
+label: "Local leverage",
+value: `${state.name} benchmarks + ${city.name} buyer research`,
+},
+];
+
+const defaultArticle = {
+heading: `Inside ${city.name} ${category.title} engagements`,
+body: articleParagraphs,
+list: articleHighlights,
+stats: articleStats,
+image: {
+src: articleImage,
+alt: `${category.title} services for ${city.name}, ${state.name}`,
+},
+};
+
+const mappedSections = Array.isArray(sections)
+? sections.map((section) => ({
+...section,
+image: {
+src: section.image?.src ?? dynamicImage ?? articleImage,
+alt:
+section.image?.alt ??
+`${category.title} in ${city.name}, ${state.name}`,
+},
+}))
+: [];
+
+const processedSections = [defaultArticle, ...mappedSections];
+
+const normalizedIncomingFaqs = Array.isArray(faqs)
+? faqs
+.map((faq) => ({
+q: faq.q || faq.question || faq.title || "",
+a: faq.a || faq.answer || faq.body || "",
+schemaAnswer: faq.schemaAnswer || faq.a || faq.answer || "",
+}))
+.filter((faq) => faq.q && faq.a)
+: [];
+
+const enhancedFaqs = [
+{
+q: `Why do ${city.name} brands choose Moydus for ${category.title.toLowerCase()}?`,
+a: `We layer ${state.name}-specific buyer research, conversion strategy, and creative execution so ${city.name} launches outperform generic agency playbooks. <a href="${cityCategoryHref}" class="${linkClass}">See ${city.name} case studies</a>.`,
+schemaAnswer: `Local research, conversion strategy, and creative execution tailored to ${city.name} and ${state.name}.`,
+},
+{
+q: `How fast can a ${city.name} ${category.title.toLowerCase()} project go live?`,
+a: `Discovery and strategy wrap within two weeks, with first launch milestones delivering inside a 6–12 week window and ongoing optimization baked in.`,
+schemaAnswer: `Discovery completes in two weeks; launch milestones land inside a 6–12 week window.`,
+},
+{
+q: `What channels drive results for ${city.name} teams?`,
+a: `We coordinate ${city.name} web design, ${state.name} SEO, Shopify builds, and lifecycle campaigns so awareness, acquisition, and retention reinforce one another.`,
+schemaAnswer: `A coordinated mix of design, SEO, e-commerce, and lifecycle campaigns tailored to ${city.name}.`,
+},
+{
+q: `What makes ${city.name} ${category.title.toLowerCase()} services unique?`,
+a: `Our ${city.name} ${category.title.toLowerCase()} services deliver custom solutions tailored for ${state.name} businesses, ensuring high engagement and measurable results.`,
+schemaAnswer: `Our ${city.name} ${category.title.toLowerCase()} services deliver custom solutions tailored for ${state.name} businesses, ensuring high engagement and measurable results.`,
+},
+{
+q: `How do ${state.name} SEO services boost my business?`,
+a: `Our ${state.name} SEO services use local citations, keyword optimization, and content strategies to dominate search results for ${city.name} audiences.`,
+schemaAnswer: `Our ${state.name} SEO services use local citations, keyword optimization, and content strategies to dominate search results for ${city.name} audiences.`,
+},
+...normalizedIncomingFaqs,
+];
+
+
+const enhancedJsonLd = Array.isArray(jsonLd)
+? jsonLd
+: [
+{
+"@context": "https://schema.org",
+"@type": "LocalBusiness",
+name: "Moydus",
+url: "https://moydus.com",
+address: {
+"@type": "PostalAddress",
+addressLocality: city.name,
+addressRegion: state.name,
+addressCountry: country.name,
+},
+description: `Full-funnel ${category.title.toLowerCase()} services in ${city.name}, ${state.name}, pairing web design, SEO, Shopify, and digital marketing for ${country.name} organizations.`,
+serviceType: [
+category.title,
+"Web Design",
+"SEO Services",
+"Shopify Development",
+"Digital Marketing",
+"E-commerce Development",
+],
+keywords: [
+`${city.name} ${category.title.toLowerCase()}`,
+`${city.name} web design`,
+`${state.name} SEO services`,
+`${city.name} Shopify development`,
+`${state.name} digital marketing`,
+],
+areaServed: {
+"@type": "Place",
+name: `${city.name}, ${state.name}`,
+},
+mainEntity: enhancedFaqs.slice(0, 3).map((faq) => ({
+"@type": "Question",
+name: faq.q,
+acceptedAnswer: {
+"@type": "Answer",
+text: faq.schemaAnswer || faq.a,
+},
+})),
+},
+];
+
+const faqItems = enhancedFaqs.map((faq) => ({
+...faq,
+schemaAnswer: faq.schemaAnswer || faq.a,
+}));
+
+return (
+
+<>
+{Array.isArray(jsonLd)
+? jsonLd.map((schema, index) => (
+<JsonLd
+key={index}
+{...schema}
+city={city.name}
+state={state.name}
+country={country.name}
+category={category.title}
+/>
+))
+: jsonLd
+? (
+<JsonLd
+{...jsonLd}
+city={city.name}
+state={state.name}
+country={country.name}
+category={category.title}
+/>
+)
+: enhancedJsonLd.map((schema, index) => (
+<JsonLd
+key={index}
+{...schema}
+city={city.name}
+state={state.name}
+country={country.name}
+category={category.title}
+/>
+))}
+
+      <header className="mb-10 space-y-4 text-center md:text-left max-w-6xl mx-auto container">
+        <p className="text-sm uppercase tracking-wide text-[#ff4d00]">
+          {category.title} in {city.name}, {state.name} ({year})
+        </p>
+        <h1 className="text-4xl font-bold text-gray-900 md:text-5xl">
+          Best {category.title} Services in {city.name}, {state.name} ({year})
+        </h1>
+        <p className="text-lg text-gray-600 md:text-xl">{intro}</p>
+      </header>
+
+      <section className="mb-12 max-w-6xl mx-auto container space-y-12">
+        {processedSections.map((section, index) => (
+          <article
+            key={index}
+            className="space-y-6"
+          >
+            {index === 0 ? (
+              <div className="mb-4 flex overflow-clip rounded-xl md:mb-5">
+                <Image
+                  src={
+                    section.image?.src ??
+                    "/images/placeholder-dark-1.svg"
+                  }
+                  alt={
+                    section.image?.alt ??
+                    `${category.title} in ${city.name}, ${state.name}`
+                  }
+                  width={1200}
+                  height={800}
+                  className="aspect-[3/2] h-full w-full object-cover object-center"
+                  priority
+                />
+              </div>
+            ) : null}
+
+            <div className="space-y-5">
+              <h2 className="text-2xl font-semibold text-gray-900">
+                {section.heading}
+              </h2>
+              {section.body?.map((paragraph, idx) =>
+                typeof paragraph === "string" ? (
+                  <p
+                    key={idx}
+                    className="text-base leading-7 text-gray-700"
+                  >
+                    {paragraph}
+                  </p>
+                ) : (
+                  <div key={idx}>{paragraph}</div>
+                )
+              )}
+              {section.list ? (
+                <ul className="space-y-2 text-gray-700 pl-6">
+                  {section.list.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="list-disc"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              {section.stats?.length ? (
+                <dl className="grid gap-4 sm:grid-cols-3 bg-slate-50 rounded-xl p-6">
+                  {section.stats.map((stat, idx) => (
+                    <div key={idx}>
+                      <dt className="text-sm font-medium text-slate-500 uppercase tracking-wide">
+                        {stat.label}
+                      </dt>
+                      <dd className="mt-1 text-base font-semibold text-slate-900">
+                        {stat.value}
+                      </dd>
+                    </div>
+                ))}
+              </dl>
+            ) : null}
+          </div>
+          </article>
+        ))}
+
+        <Info>
+          <h3 className="text-lg font-semibold mb-2">
+            Why {city.name} teams scale faster with Moydus
+          </h3>
+          <ul className="space-y-1 text-sm text-slate-700 pl-6">
+            <li className="list-disc">Strategy rooted in {state.name} buyer research and funnels</li>
+            <li className="list-disc">Full-funnel activation across design, SEO, and lifecycle</li>
+            <li className="list-disc">Transparent benchmarks: {pricingRange || pricing?.retainer || "retainers starting near $1.5k/mo"}</li>
+          </ul>
+        </Info>
+      </section>
+
+      {providers.length ? (
+        <section className="mb-12 max-w-6xl mx-auto container">
+          <h2 className="text-3xl font-bold text-gray-900">
+            🏆 Top {category.title} Providers in {city.name}
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Compare focus areas, ratings, and strengths before you shortlist.
+          </p>
+          <div className="mt-6">
+            <CardGrid
+              cards={providers.map((provider) => ({
+                href: provider.website,
+                icon: provider.local ? (
+                  <Home className="w-6 h-6 text-[#ff4d00]" />
+                ) : (
+                  <Building2 className="w-6 h-6 text-[#ff4d00]" />
+                ),
+                title: provider.name,
+                description: `${provider.focus} • Rating: ${"★".repeat(
+                  Math.round(provider.rating || 0)
+                )}${provider.bestFor ? ` • Best for ${provider.bestFor}` : ""}`,
+                external: true,
+              }))}
+            />
+          </div>
+        </section>
+      ) : null}
+
+      {pricing ? (
+        <section className="mb-12 max-w-6xl mx-auto container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <Megaphone className="w-4 h-4 inline-block mr-2 text-[#ff4d00]" />
+            Pricing for {category.title} in {city.name} ({year})
+          </h2>
+          <p className="mt-2 text-gray-600 mb-6">
+            Use these benchmarks to scope upcoming engagements.
+          </p>
+          <CardGrid
+            cards={[
+              {
+                href: "#",
+                icon: <DollarSign className="w-6 h-6 text-[#ff4d00]" />,
+                title: "Project Investment",
+                description: `${pricingRange || pricing?.startingFrom || "Custom"} • Timeline: ${
+                  pricing?.timeline || "4–12 weeks"
+                }`,
+              },
+              {
+                href: "#",
+                icon: <Calendar className="w-6 h-6 text-[#ff4d00]" />,
+                title: "Ongoing Retainers",
+                description: `${pricing?.retainer || "From $1.5k/month"} • Includes optimization and reporting.`,
+              },
+            ]}
+          />
+          {pricingNotes.length ? (
+            <ul className="mt-6 list-disc space-y-2 pl-5 text-sm text-gray-600">
+              {pricingNotes.map((note, index) => (
+                <li key={index}>{note}</li>
+              ))}
+            </ul>
+          ) : null}
+        </section>
+      ) : null}
+
+      {relatedCategories.length ? (
+        <section className="mb-12 max-w-6xl mx-auto container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Related {category.title} Services in {city.name}
+          </h2>
+          <CardGrid
+            cards={relatedCategories.map((item) => ({
+              href: item.href,
+              icon: <Zap className="w-6 h-6 text-[#ff4d00]" />,
+              title: item.title,
+              description: item.description,
+            }))}
+          />
+        </section>
+      ) : null}
+
+      {relatedCities.length ? (
+        <RelatedCities
+          title={`Explore ${category.title} in nearby cities`}
+          items={relatedCities.map((item) => ({
+            name: item.name,
+            href: item.href,
+            highlight: item.highlight,
+          }))}
+        />
+      ) : null}
+
+      {compareLinks.length ? (
+        <section className="mb-12 max-w-6xl mx-auto container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Compare {category.title} Options
+          </h2>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {compareLinks.map((compare, index) => (
+              <Compare
+                key={index}
+                title={compare.title}
+                href={compare.href}
+                description={
+                  compare.description || "Benchmark performance before you decide."
+                }
+                items={compare.items}
+              />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {relatedPosts.length ? (
+        <section className="mb-12 max-w-6xl mx-auto container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Research & Playbooks
+          </h2>
+          <CardGrid
+            cards={relatedPosts.map((post) => ({
+              href: post.href,
+              icon: <BookOpen className="w-6 h-6 text-[#ff4d00]" />,
+              title: post.title,
+              description: post.description,
+            }))}
+          />
+        </section>
+      ) : null}
+
+      <section className="mb-12 max-w-6xl mx-auto container">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">❓ FAQs</h2>
+        <div className="space-y-4">
+          {enhancedFaqs.map((faq, index) => (
+            <Accordion
+              key={index}
+              title={faq.q}
+              defaultOpen={index === 0}
+              icon={<Rocket className="w-4 h-4" />}
+            >
+              <p className="text-gray-700" dangerouslySetInnerHTML={{ __html: faq.a }} />
+            </Accordion>
+          ))}
+        </div>
+      </section>
+
+      {topicCluster ? (
+        <section className="mb-12 max-w-6xl mx-auto container">
+          <Note>
+            <h3 className="text-xl font-semibold mb-2">
+              Strengthen your {category.title} footprint
+            </h3>
+            <p>
+              Link supporting assets back to{" "}
+              <Link href={topicCluster.pillarUrl} className={linkClass}>
+                the {category.title.toLowerCase()} pillar
+              </Link>{" "}
+              to consolidate topical authority across {state.name}.
+            </p>
+          </Note>
+        </section>
+      ) : null}
+
+      {cta ? (
+        <section className="mb-12 max-w-6xl mx-auto container">
+      <div className="rounded-2xl bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 p-8 text-white shadow-lg">
+        <h2 className="text-3xl font-semibold">{cta.title}</h2>
+        <p className="mt-3 max-w-2xl text-lg text-blue-50">{cta.body}</p>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Link
+            href={cta.primary.href}
+            className="bg-white text-black hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold transition-colors"
+          >
+            {cta.primary.label}
+          </Link>
+          <Link
+            href={cta.secondary.href}
+            className="border border-white/60 text-white hover:bg-white/10 px-6 py-3 rounded-lg font-semibold transition-colors"
+          >
+            {cta.secondary.label}
+          </Link>
+        </div>
+        {cta.footer ? (
+          <p className="mt-4 text-xs uppercase tracking-wide text-blue-100">
+            {cta.footer}
+          </p>
+        ) : null}
+      </div>
+    </section>
+
+) : null}
+
+</>
+);
+}

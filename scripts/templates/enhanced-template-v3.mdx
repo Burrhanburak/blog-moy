@@ -1,0 +1,233 @@
+---
+# Core Metadata
+title: "{dynamicTitle}"
+city: "{city}"
+state: "{state}"
+country: "{countryName}"
+locale: "{locale}"
+category: "{categoryKey}"
+slug: "{locale}/{countrySlug}/{stateSlug}/{citySlug}/{categoryKey}"
+
+# SEO Meta
+canonicalUrl: "https://moydus.com/{locale}/{countrySlug}/{stateSlug}/{citySlug}/{categoryKey}"
+lastUpdated: "{currentDate}"
+
+# Geographic Data
+geo:
+  latitude: { latitude }
+  longitude: { longitude }
+  region: "{stateCode}"
+  city: "{city}"
+  country: "{countryCode}"
+
+# Author & Authority
+author:
+  name: "Moydus"
+  sameAs:
+    - "https://www.linkedin.com/company/moydus"
+    - "https://github.com/moydus"
+    - "https://twitter.com/moydus"
+    - "https://www.facebook.com/moydus"
+
+# Dynamic Content (AI-Generated)
+dynamic:
+  title: "{dynamicTitle}"
+  meta:
+    title: "{dynamicMetaTitle}"
+    description: "{dynamicMetaDescription}"
+  og:
+    title: "{dynamicOGTitle}"
+    description: "{dynamicOGDescription}"
+    image: "/api/og?city={citySlug}&category={categoryKey}"
+  twitter:
+    title: "{categoryDisplay} in {city} — Fast & Effective"
+    description: "{categoryTargetAudience} in {city}. {categoryTimeline} launch. Proven results."
+    image: "/api/og?city={citySlug}&category={categoryKey}&type=twitter"
+  keywords:
+    primary: { dynamicPrimaryKeywords }
+    secondary: { dynamicSecondaryKeywords }
+  categories: { dynamicCategories }
+  services: { servicesList }
+  faqs: { dynamicFAQs }
+  testimonials: { dynamicTestimonials }
+  relatedServices: { dynamicRelatedServices }
+  cta: { dynamicCTAConfig }
+  snippet: "{dynamicSnippet}"
+
+# Content Settings
+snippable: true
+structuredData: true
+priceRange: "{categoryPrice}"
+timeline: "{categoryTimeline}"
+targetAudience: "{categoryTargetAudience}"
+currency: "{currencyCode}"
+currencySymbol: "{currencySymbol}"
+timeZone: "{timeZone}"
+---
+
+import { Hero } from "@/components/sections/Hero";
+import { WhyChoose } from "@/components/sections/WhyChoose";
+import { MarketInsights } from "@/components/sections/MarketInsights";
+import { Process } from "@/components/sections/Process";
+import { Compare } from "@/components/sections/Compare";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { FAQ } from "@/components/sections/FAQ";
+import { CTA } from "@/components/sections/CTA";
+import { JsonLd, generateStructuredData } from "@/components/JsonLd";
+
+<JsonLd
+  data={generateStructuredData({
+    city: "{city}",
+    state: "{state}",
+    country: "{countryName}",
+    category: "{categoryDisplay}",
+    faqs: { dynamicFAQs },
+    canonicalUrl:
+      "https://moydus.com/{locale}/{countrySlug}/{stateSlug}/{citySlug}/{categoryKey}",
+    lastUpdated: "{currentDate}",
+  })}
+/>
+
+<Hero
+  city="{city}"
+  dynamicHeadline="{dynamicHeadline}"
+  dynamicSubheadline="{dynamicSubheadline}"
+  categoryDisplay="{categoryDisplay}"
+  categoryTargetAudience="{categoryTargetAudience}"
+/>
+
+<WhyChoose
+  city="{city}"
+  categoryDisplay="{categoryDisplay}"
+  dynamicBenefit="{dynamicBenefit}"
+  dynamicValueProposition="{dynamicValueProposition}"
+  dynamicBenefitsGrid={dynamicBenefitsGrid}
+/>
+
+<MarketInsights city="{city}" dynamicMarketInsights={dynamicMarketInsights} />
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+  {servicesList
+    .split("\n")
+    .filter((service) => service.trim().startsWith("-"))
+    .map((service, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+      >
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">
+          {service.replace("- ", "")}
+        </h3>
+        <p className="text-gray-600 text-sm">
+          Professional {service.replace("- ", "").toLowerCase()} services
+          tailored for {city} businesses.
+        </p>
+      </div>
+    ))}
+</div>
+
+<Compare
+  title="Why Choose Professional {categoryDisplay} vs DIY?"
+  description="Making the right choice for your {city} business"
+  href="/blog/professional-vs-diy-{categoryKey}"
+  items={{
+    option1: "DIY {categoryDisplay}",
+    option2: "Professional Service",
+    winner: "Professional Service",
+    reasons: [
+      "Faster implementation and time-to-market",
+      "Local {city} market expertise and insights",
+      "Ongoing support and optimization",
+      "Proven results and ROI tracking",
+    ],
+  }}
+/>
+
+<Process
+  city="{city}"
+  categoryDisplay="{categoryDisplay}"
+  dynamicProcessSteps={dynamicProcessSteps}
+/>
+
+## Pricing & Timeline
+
+<div className="bg-white rounded-lg shadow-md p-8 mb-12">
+  <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+    Transparent Pricing for {city} Businesses
+  </h2>
+
+{dynamicPricingPackages}
+
+  <div className="text-center mt-8">
+    <a
+      href="https://moydus.com/contact"
+      className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+    >
+      Get Custom Quote
+    </a>
+  </div>
+</div>
+
+<Testimonials
+  city="{city}"
+  dynamicTestimonialsSection={dynamicTestimonialsSection}
+/>
+
+<FAQ
+  city="{city}"
+  categoryDisplay="{categoryDisplay}"
+  dynamicFAQSection={dynamicFAQSection}
+/>
+
+## Related Services in {city}
+
+<RelatedCities
+  currentCity="{city}"
+  currentState="{state}"
+  currentCountry="{countryName}"
+  locale="{locale}"
+  category="{categoryKey}"
+  relatedCities={[
+    {
+      name: "{nearbyCity1}",
+      slug: "{nearbyCity1Slug}",
+      distance: "{nearbyCity1Distance}",
+      highlight: "Growing tech hub with emerging businesses",
+    },
+    {
+      name: "{nearbyCity2}",
+      slug: "{nearbyCity2Slug}",
+      distance: "{nearbyCity2Distance}",
+      highlight: "Established market with diverse industries",
+    },
+    {
+      name: "{nearbyCity3}",
+      slug: "{nearbyCity3Slug}",
+      distance: "{nearbyCity3Distance}",
+      highlight: "Tourism and hospitality focus",
+    },
+  ]}
+/>
+
+<CTA
+  city="{city}"
+  categoryDisplay="{categoryDisplay}"
+  dynamicCTAConfig={dynamicCTAConfig}
+/>
+
+---
+
+<div className="text-center text-sm text-gray-500 mt-8 mb-8">
+
+  <p>
+    <strong>About Moydus:</strong> We specialize in helping local businesses
+    succeed online. With expertise in {categoryDisplay}, Local SEO, and digital
+    marketing, we've helped hundreds of {city} and {state} businesses grow their
+    online presence and revenue.
+  </p>
+  <p className="mt-2">
+    <em>
+      Last updated: {currentDate} | Proudly serving {city}, {state}
+    </em>
+  </p>
+</div>
