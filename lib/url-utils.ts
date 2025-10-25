@@ -8,6 +8,11 @@ const RAW_LOCATION_DATA = JSON.parse(
   fs.readFileSync(path.join(process.cwd(), "data/filtered.json"), "utf8")
 );
 
+// Load priority countries data for locale mapping
+const PRIORITY_COUNTRIES_DATA = JSON.parse(
+  fs.readFileSync(path.join(process.cwd(), "data/priorityCountries.json"), "utf8")
+);
+
 const SUPPORTED_COUNTRY_CODES = new Set([
   "US", // United States
   "GB", // United Kingdom
@@ -192,7 +197,8 @@ export function getCityByCode(
  * Get available locales for a country
  */
 export function getAvailableLocales(countryCode: string): string[] {
-  return ["en"];
+  // Site only supports English content, no locales
+  return [];
 }
 
 /**
@@ -214,10 +220,11 @@ export function isPrimaryLocale(countryCode: string, locale: string): boolean {
  * Check if locale is valid for country
  */
 export function isValidLocaleForCountry(
-  _countrySlug: string,
+  countrySlug: string,
   locale: string
 ): boolean {
-  return locale === "en";
+  // Site only supports English content, no locales
+  return false;
 }
 
 /**

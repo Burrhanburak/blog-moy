@@ -19,8 +19,6 @@
     "generate:blog": "bun run scripts/generate-blog-posts.ts",
     "generate:all": "bun run generate:v2 && bun run generate:blog",
     "sitemaps": "SITEMAP_BASE_URL=https://moydus.com bun run scripts/generate-sitemaps.ts",
-    "sitemaps:optimized": "SITEMAP_BASE_URL=https://moydus.com bun run scripts/generate-sitemaps-optimized.ts",
-    "generate:sitemap": "bun run -e 'import { generateAllSitemaps } from \"./lib/sitemap-generator\"; generateAllSitemaps()'",
     "test:generation": "bun run scripts/test-dynamic-generation.ts",
     "build:production": "bun run generate:all && bun run build",
     "build:fast": "bun run scripts/build-production.ts",

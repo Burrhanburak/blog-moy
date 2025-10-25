@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import {
   categories as allCategories,
-  priorityCategories,
   fillKeywords,
   getBenefitText,
   type CategoryConfig,
@@ -33,8 +32,7 @@ const locationDataset = JSON.parse(
   fs.readFileSync("data/filtered.json", "utf8")
 );
 
-const categories =
-  priorityCategories.length > 0 ? priorityCategories : allCategories;
+const categories = allCategories; // Use all 25 categories
 
 let totalGenerated = 0;
 let totalSkipped = 0;
@@ -905,71 +903,39 @@ locationDataset.forEach((country: any) => {
 const todayISO = new Date().toISOString().slice(0, 10);
 const todayISOWithSpaces = todayISO.replace(/-/g, " - ");
 
-// ✅ Country → Locale mapping
-const countryLocaleMap: Record<string, string> = {
-  "United States": "en",
-  "United Kingdom": "en",
-  Canada: "en",
-  Australia: "en",
-  Germany: "de",
-  France: "fr",
-  Japan: "ja",
-  "South Korea": "ko",
-  Netherlands: "nl",
-  Sweden: "sv",
-  Norway: "no",
-  Denmark: "da",
-  Switzerland: "de",
-  Singapore: "en",
-  "Saudi Arabia": "ar",
-  "United Arab Emirates": "ar",
-};
-
 console.log(`🚀 Starting optimized MDX generation...`);
 console.log(`📊 Found ${categories.length} categories`);
-console.log(`🌐 Supported locales: ${locales.join(", ")}`);
+console.log(`🌐 All content will be in English only (no locales)`);
 
-// ✅ Add locale dynamically
+// ✅ All countries use English content only
 const countries = (data.priorityCountries || []).map((country: Country) => ({
   ...country,
-  locale: countryLocaleMap[country.name] || undefined,
+  locale: "en", // English content only, no localization
 }));
 
-// ✅ Filter only countries with valid locales and existing states/cities
+// ✅ Filter only countries with existing states/cities
 const filteredData = countries.filter(
-  (c) =>
-    c.locale &&
-    locales.includes(c.locale) &&
-    c.topStatesCities &&
-    c.topStatesCities.length > 0
+  (c) => c.topStatesCities && c.topStatesCities.length > 0
 );
 
-console.log(
-  `📍 Processing ${filteredData.length} countries with supported locales...`
-);
+console.log(`📍 Processing ${filteredData.length} countries...`);
 
-// ✅ Limit cities per state to top 50
-const MAX_CITIES_PER_STATE = 50;
+// ✅ No limit on cities per state - use all cities from priorityCountries.json
 
 filteredData.forEach((country: Country) => {
-  if (!countryLocaleMap[country.name]) {
-    console.log(`⚠️ Skipping ${country.name} (no locale match)`);
-    return;
-  }
-
   if (!country.topStatesCities || country.topStatesCities.length === 0) {
     console.log(`⚠️ Skipping ${country.name} (no states/cities)`);
     return;
   }
 
   const countrySlug = slugify(country.name);
-  const locale = country.locale || "en";
+  const locale = "en"; // English-only output for all content
 
   console.log(`\n🌍 Processing ${country.name} (${locale})...`);
 
   (country.topStatesCities || []).forEach((state) => {
     const stateSlug = slugify(state.state);
-    const limitedCities = (state.cities || []).slice(0, MAX_CITIES_PER_STATE);
+    const limitedCities = state.cities || [];
 
     // Skip states with no cities
     if (!limitedCities.length) {
@@ -977,9 +943,7 @@ filteredData.forEach((country: Country) => {
       return;
     }
 
-    console.log(
-      `  📍 ${state.state} (${limitedCities.length}/${state.cities.length} cities)`
-    );
+    console.log(`  📍 ${state.state} (${limitedCities.length} cities)`);
 
     limitedCities.forEach((city) => {
       const cityName =
@@ -999,22 +963,8 @@ filteredData.forEach((country: Country) => {
         const servicesArray = JSON.stringify(cat.services);
 
         try {
-          // Force every country to live under a locale folder
-          const effectiveLocale =
-            locale || countryLocaleMap[country.name] || "en";
-
-          if (!effectiveLocale || effectiveLocale === "unknown") {
-            console.log(`⚠️ Skipping ${country.name} — invalid locale`);
-            return;
-          }
-
-          const fileDir = path.join(
-            outDir,
-            effectiveLocale,
-            countrySlug,
-            stateSlug,
-            citySlug
-          );
+          // All content is English, no locale folders needed
+          const fileDir = path.join(outDir, countrySlug, stateSlug, citySlug);
 
           fs.mkdirSync(fileDir, { recursive: true });
 
@@ -1230,7 +1180,7 @@ console.log(`   ⚠️ Skipped: ${totalSkipped} invalid categories`);
 console.log(`   📁 Output: ${outDir}/`);
 console.log(`   🗂️ Categories: ${categories.length}`);
 console.log(`   🌐 Countries: ${filteredData.length}`);
-console.log(`   🏙️ Max cities per state: ${MAX_CITIES_PER_STATE}`);
+console.log(`   🏙️ Cities per state: All cities from priorityCountries.json`);
 console.log(`\n💡 Next steps:`);
 console.log(`   1. Review: tree ${outDir} -L 4`);
 console.log(`   2. Test: bun run dev`);
@@ -1242,7 +1192,7 @@ const summaryStats = {
   skipped: totalSkipped,
   categories: categories.length,
   countries: filteredData.length,
-  maxCitiesPerState: MAX_CITIES_PER_STATE,
+  maxCitiesPerState: "All cities from priorityCountries.json",
   generatedAt: new Date().toISOString(),
 };
 fs.writeFileSync(

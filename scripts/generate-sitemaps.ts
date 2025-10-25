@@ -31,40 +31,23 @@ function buildEntries(): UrlEntry[] {
   const now = new Date().toISOString().split("T")[0];
 
   for (const country of allCountries) {
-    const availableLocales = getAvailableLocales(country.code);
-
     for (const state of country.states) {
       for (const city of state.cities) {
         for (const category of categories) {
-          // Each combination of locale/country/state/city/category gets an entry
-          const firstLocale = availableLocales[0] || 'en';
-          
+          // No locales - direct URL structure
           const canonicalUrl = `${BASE}${buildLocationUrl(
-            firstLocale,
+            "en", // Always English content
             country.name,
             state.name,
             city.name,
             category.key
           )}`;
 
-          const alternates = availableLocales.map(locale => ({
-            hreflang: locale,
-            href: `${BASE}${buildLocationUrl(
-              locale,
-              country.name,
-              state.name,
-              city.name,
-              category.key
-            )}`,
-          }));
-
-          // Add x-default hreflang
-          alternates.push({ hreflang: 'x-default', href: canonicalUrl });
-
+          // No hreflang alternates since we only have English content
           urls.push({
             loc: canonicalUrl,
             lastmod: now,
-            alternates,
+            alternates: [], // No alternates needed
           });
         }
       }
@@ -88,11 +71,7 @@ function writeSitemaps(urls: UrlEntry[]) {
       lines.push("  <url>");
       lines.push(`    <loc>${u.loc}</loc>`);
       lines.push(`    <lastmod>${u.lastmod}</lastmod>`);
-      for (const alt of u.alternates) {
-        lines.push(
-          `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${alt.href}" />`
-        );
-      }
+      // No hreflang alternates since we only have English content
       lines.push("  </url>");
     }
     lines.push("</urlset>");
