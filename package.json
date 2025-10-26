@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "contentlayer dev & next dev --turbopack",
     "contentlayer": "contentlayer build",
-    "build": "contentlayer build; next build --turbopack",
+    "prebuild": "contentlayer build",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
     "mcp:next-devtools": "npx -y next-devtools-mcp@latest",

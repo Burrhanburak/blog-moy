@@ -16,12 +16,6 @@ const nextConfig = {
     CONTENTLAYER_LOCALES: process.env.CONTENTLAYER_LOCALES,
     CONTENTLAYER_CATEGORIES: process.env.CONTENTLAYER_CATEGORIES,
   },
-  turbopack: {
-    resolveAlias: {
-      "contentlayer/generated": "./.contentlayer/generated",
-      "next-intl/config": "./i18n/request.ts",
-    },
-  },
   webpack(config: any) {
     config.resolve = config.resolve || {};
     config.resolve.alias = config.resolve.alias || {};
