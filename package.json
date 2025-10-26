@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "contentlayer dev & next dev --turbopack",
+    "contentlayer": "contentlayer build",
+    "build": "contentlayer build && next build --turbopack",
     "start": "next start",
     "lint": "eslint",
     "mcp:next-devtools": "npx -y next-devtools-mcp@latest",
