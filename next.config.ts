@@ -22,7 +22,7 @@ const nextConfig = {
       "next-intl/config": "./i18n/request.ts",
     },
   },
-  webpack(config) {
+  webpack(config: any) {
     config.resolve = config.resolve || {};
     config.resolve.alias = config.resolve.alias || {};
     Object.assign(config.resolve.alias, {

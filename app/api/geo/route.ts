@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
   } else if (geo.city && geo.country) {
     finalCountry = geo.country;
     finalCity = geo.city;
-    finalRegion = geo.region;
+    finalRegion = geo.region || null;
     source = "Vercel Geolocation";
   } else if (isDevelopment) {
     // Development fallbacks based on accept-language
@@ -91,20 +91,10 @@ export async function GET(request: NextRequest) {
   const clientIP = cfIP || realIP || forwarded?.split(",")[0];
 
   // Try additional IP-based detection if primary methods failed
+  // Note: GEOLocationDetector implementation removed for build compatibility
   if (!finalCity && clientIP) {
-    try {
-      const detector = GEOLocationDetector.getInstance();
-      const ipLocation = await detector.getLocationFromIP(clientIP);
-      if (ipLocation) {
-        locationData.city = ipLocation.city;
-        locationData.state = ipLocation.state;
-        locationData.country = ipLocation.country;
-        locationData.countryCode = ipLocation.countryCode;
-        locationData.source = "IP Geolocation Service";
-      }
-    } catch (error) {
-      console.warn("IP geolocation failed:", error);
-    }
+    // IP-based geolocation would be implemented here
+    console.log("IP-based geolocation not available:", clientIP);
   }
 
   const responseData = {

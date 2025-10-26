@@ -20,7 +20,7 @@ function ensureProcessPolyfill() {
   }
 
   if (typeof globalThis.process.env.NODE_ENV === "undefined") {
-    globalThis.process.env.NODE_ENV = "production";
+    (globalThis.process.env as any).NODE_ENV = "production";
   }
 }
 

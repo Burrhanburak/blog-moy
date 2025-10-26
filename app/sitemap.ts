@@ -170,12 +170,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "australia",
   ]);
 
-  const priorityCountries = getAllCountries().filter((country) =>
+  const priorityCountries = getAllCountries().filter((country: any) =>
     priorityCountrySlugs.has(country.slug)
   );
 
   const countryPages: MetadataRoute.Sitemap = priorityCountries.map(
-    (country) => ({
+    (country: any) => ({
       url: `${baseUrl}/${country.slug}`,
       lastModified: currentDate,
       changeFrequency: "weekly",
@@ -184,8 +184,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   const statePages: MetadataRoute.Sitemap = priorityCountries.flatMap(
-    (country) =>
-      country.states.map((state) => ({
+    (country: any) =>
+      country.states.map((state: any) => ({
         url: `${baseUrl}/${country.slug}/${state.slug}`,
         lastModified: currentDate,
         changeFrequency: "weekly" as const,
@@ -194,9 +194,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   const cityPagesAll: MetadataRoute.Sitemap = priorityCountries.flatMap(
-    (country) =>
-      country.states.flatMap((state) =>
-        state.cities.map((city) => ({
+    (country: any) =>
+      country.states.flatMap((state: any) =>
+        state.cities.map((city: any) => ({
           url: `${baseUrl}/${country.slug}/${state.slug}/${city.slug}`,
           lastModified: currentDate,
           changeFrequency: "weekly" as const,

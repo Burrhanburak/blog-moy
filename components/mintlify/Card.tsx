@@ -64,7 +64,7 @@ export function Card<T extends ElementType = "div">({
 
   const isImageSrc: boolean = typeof icon === "string";
 
-  const renderIcon: JSX.Element = (
+  const renderIcon: React.ReactElement = (
     <>
       {icon ? (
         isImageSrc ? (

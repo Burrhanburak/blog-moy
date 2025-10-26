@@ -11,4 +11,4 @@ export {
   ImageGallery, 
   BeforeAfterImage 
 } from './ImageCard';
-export { Tip, SnippetCallout, QuickCallout, WarningCallout, ProCallout } from './Tip';
+export { SnippetCallout, QuickCallout, WarningCallout, ProCallout } from './Tip';

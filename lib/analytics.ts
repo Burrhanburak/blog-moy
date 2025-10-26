@@ -92,7 +92,7 @@ class AnalyticsManager {
 
   private async initWebVitals() {
     try {
-      const { getCLS, getFID, getFCP, getLCP, getTTFB, onINP } = await import('web-vitals');
+      const { onCLS, onFCP, onLCP, onTTFB, onINP } = await import('web-vitals');
       
       const sendVitalMetric = (metric: any) => {
         const webVital: WebVitalsMetric = {
@@ -114,11 +114,10 @@ class AnalyticsManager {
         this.log('Web Vital recorded:', webVital);
       };
 
-      getCLS(sendVitalMetric);
-      getFID(sendVitalMetric);
-      getFCP(sendVitalMetric);
-      getLCP(sendVitalMetric);
-      getTTFB(sendVitalMetric);
+      onCLS(sendVitalMetric);
+      onFCP(sendVitalMetric);
+      onLCP(sendVitalMetric);
+      onTTFB(sendVitalMetric);
       onINP(sendVitalMetric);
       
     } catch (error) {

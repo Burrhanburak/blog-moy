@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { blogCategories, BlogCategoryConfig } from "../config/blog-categories";
-import { locales } from "../config/locales";
+import { locales } from "../navigation";
 
 // Blog topics for each category
 const blogTopics: Record<string, string[]> = {

@@ -2,7 +2,7 @@
 export interface ComparisonItem {
   name: string;
   slug: string;
-  type: 'city' | 'service' | 'provider' | 'technology';
+  type: 'service' | 'provider' | 'technology';
   description: string;
   image?: string;
   metadata: {
@@ -321,8 +321,8 @@ export class ComparisonGenerator {
     const winner = scoredItems[0];
     const runnerUp = scoredItems[1];
     
-    const bestFor = [];
-    const keyDifferences = [];
+    const bestFor: any[] = [];
+    const keyDifferences: any[] = [];
     
     // Find what each option is best for
     criteria.forEach(criterion => {
@@ -444,7 +444,7 @@ export class ComparisonGenerator {
     title: string;
     slug: string;
     description: string;
-    type: 'city' | 'service' | 'technology';
+    type: 'service' | 'technology' | 'provider';
   }> {
     const comparisons = [];
     
@@ -466,7 +466,7 @@ export class ComparisonGenerator {
           title: 'New York vs San Francisco Web Design Markets',
           slug: 'nyc-vs-sf-web-design',
           description: 'Compare costs, talent, and opportunities in major tech hubs',
-          type: 'city' as const,
+          type: 'provider' as const,
         }
       );
     }
@@ -498,7 +498,7 @@ export const COMPARISON_DATA = {
     'new-york': {
       name: 'New York',
       slug: 'new-york',
-      type: 'city' as const,
+      type: 'provider' as const,
       description: 'The financial capital with huge market opportunities',
       metadata: {
         population: 8336000,
@@ -511,7 +511,7 @@ export const COMPARISON_DATA = {
     'san-francisco': {
       name: 'San Francisco',
       slug: 'san-francisco',
-      type: 'city' as const,
+      type: 'provider' as const,
       description: 'Tech hub with high-value digital service demand',
       metadata: {
         population: 875000,
@@ -524,7 +524,7 @@ export const COMPARISON_DATA = {
     'berlin': {
       name: 'Berlin',
       slug: 'berlin',
-      type: 'city' as const,
+      type: 'provider' as const,
       description: 'European startup capital with growing tech scene',
       metadata: {
         population: 3700000,

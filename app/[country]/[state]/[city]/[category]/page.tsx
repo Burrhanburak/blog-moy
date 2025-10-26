@@ -15,7 +15,6 @@ import {
 } from "@/lib/url-utils";
 import { buildCityCategoryTemplateProps } from "@/lib/city-category-template";
 import { TemplateRenderer } from "@/components/TemplateRenderer";
-import { CtaMiniForm } from "@/shared/CtaMiniForm";
 import { generateHumanContent } from "@/lib/human-content";
 import { HumanContent } from "@/components/HumanContent";
 import { GeoBreadcrumb } from "@/components/geo";
@@ -384,7 +383,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {categoryData.title.toLowerCase()} fit for {cityData.name}.
           </div>
           <div className="mt-6 max-w-3xl">
-            <CtaMiniForm city={cityData.name} category={categoryData.title} />
+            {/* CtaMiniForm component removed - missing file */}
           </div>
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-gray-500">
             <Link

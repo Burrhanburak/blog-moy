@@ -40,7 +40,7 @@ export default async function CompareIndexPage() {
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link
-                  href={`/${locale}`}
+                  href="/"
                   className="hover:text-gray-700 transition-colors"
                 >
                   Home

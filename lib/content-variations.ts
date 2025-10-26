@@ -34,21 +34,11 @@ export function generateContentVariations(city: string, category: string): Conte
     ],
     
     processSteps: [
-      {
-        step1: `Discovery & ${city} Market Analysis`,
-        step2: `Strategic Planning & Design`,
-        step3: `Implementation & Launch`
-      },
-      {
-        step1: `Consultation & Goal Setting`,
-        step2: `Development & Optimization`, 
-        step3: `Launch & Performance Monitoring`
-      },
-      {
-        step1: `Research & Competitive Analysis`,
-        step2: `Custom Solution Development`,
-        step3: `Testing & Deployment`
-      }
+      `Discovery & ${city} Market Analysis → Strategic Planning & Design → Implementation & Launch`,
+      `Consultation & Goal Setting → Development & Optimization → Launch & Performance Monitoring`,
+      `Research & Competitive Analysis → Custom Solution Development → Testing & Deployment`,
+      `Initial Assessment → Custom Strategy Development → Results-Driven Execution`,
+      `Market Research → Tailored Solution Design → Expert Implementation`
     ],
     
     closingStatements: [

@@ -36,14 +36,14 @@ export async function POST(request: NextRequest) {
               serviceType
                 ? `<p><strong>Service Type:</strong> ${serviceType
                     .replace("-", " ")
-                    .replace(/\b\w/g, (l) => l.toUpperCase())}</p>`
+                    .replace(/\b\w/g, (l: string) => l.toUpperCase())}</p>`
                 : ""
             }
             ${
               budget
                 ? `<p><strong>Budget:</strong> ${budget
                     .replace("-", " ")
-                    .replace(/\b\w/g, (l) => l.toUpperCase())}</p>`
+                    .replace(/\b\w/g, (l: string) => l.toUpperCase())}</p>`
                 : ""
             }
           </div>

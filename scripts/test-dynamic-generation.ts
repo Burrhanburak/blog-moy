@@ -67,7 +67,7 @@ function testDynamicGeneration() {
       console.log(`"${geoContent.snippet}"`);
 
       console.log(`\n❓ FAQs (${geoContent.faqs.length} items):`);
-      geoContent.faqs.forEach((faq, i) => {
+      geoContent.faqs.forEach((faq: any, i: number) => {
         console.log(`   ${i + 1}. ${faq.q}`);
         console.log(`      → ${faq.a.substring(0, 100)}...`);
       });
@@ -117,14 +117,14 @@ function testCategoryCoverage() {
   categories.forEach((cat, index) => {
     console.log(
       `${(index + 1).toString().padStart(2)}. ${cat.key.padEnd(25)} → ${
-        cat.display
+        cat.title
       }`
     );
     console.log(
       `    Pricing: ${cat.priceRange.padEnd(20)} Timeline: ${cat.timeline}`
     );
     console.log(`    Audience: ${cat.targetAudience}`);
-    console.log(`    Benefit: ${cat.benefit}\n`);
+    console.log(`    Description: ${cat.description}\n`);
   });
 }
 
@@ -149,17 +149,17 @@ function testRelatedServices() {
       state: "Test State",
       country: "United States",
       category: categoryKey,
-      categoryDisplay: category.display,
+      categoryDisplay: category.title,
       priceRange: category.priceRange,
       timeline: category.timeline,
       targetAudience: category.targetAudience,
       description: category.description,
-      benefit: category.benefit,
+      benefit: category.description,
     };
 
     const geoContent = generateEnhancedGEOContent(testConfig);
 
-    console.log(`\n${category.display}:`);
+    console.log(`\n${category.title}:`);
     geoContent.relatedServices.forEach((service, i) => {
       console.log(`  ${i + 1}. ${service.name}`);
     });

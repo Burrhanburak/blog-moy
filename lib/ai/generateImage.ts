@@ -21,11 +21,14 @@ export async function generateImage({
     const response = await openai.images.generate({
       model: "dall-e-3",
       prompt,
-      size: "1024x576",
+      size: "1024x1024",
       n: 1,
     });
 
-    const imageUrl = response.data[0].url;
+    const imageUrl = response.data?.[0]?.url;
+    if (!imageUrl) {
+      throw new Error("No image URL returned from OpenAI");
+    }
 
     // Download the image
     const imageResponse = await fetch(imageUrl);

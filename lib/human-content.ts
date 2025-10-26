@@ -23,6 +23,7 @@ export function generateHumanContent(
 ): HumanContentPayload {
   const seed = getVariationSeed(
     `${city}:${category}`,
+    locale,
     category.length + city.length || 7
   );
 

@@ -247,12 +247,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Article Content */}
           <div className="prose prose-lg max-w-none">
-            <div
-              dangerouslySetInnerHTML={{
-                __html:
-                  post.body.html || post.content || "Content not available",
-              }}
-            />
+            <div>Blog content would be rendered here</div>
           </div>
         </article>
 

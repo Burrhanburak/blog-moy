@@ -915,7 +915,7 @@ const countries = (data.priorityCountries || []).map((country: Country) => ({
 
 // ✅ Filter only countries with existing states/cities
 const filteredData = countries.filter(
-  (c) => c.topStatesCities && c.topStatesCities.length > 0
+  (c: any) => c.topStatesCities && c.topStatesCities.length > 0
 );
 
 console.log(`📍 Processing ${filteredData.length} countries...`);

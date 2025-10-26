@@ -175,11 +175,9 @@ export class EnhancedGEOSnippetGenerator {
   private getBaseFAQs(config: SnippetConfig): Array<{ q: string; a: string }> {
     const categoryDisplaySafe =
       config.categoryDisplay ||
-      this.getCategoryData(config.category)?.display ||
+      this.getCategoryData(config.category)?.title ||
       (
-        this.getCategoryData(config.category) as CategoryConfig & {
-          display: string;
-        }
+        this.getCategoryData(config.category) as CategoryConfig
       )?.title ||
       config.category;
     const categoryDisplayLower = String(categoryDisplaySafe).toLowerCase();
@@ -213,7 +211,7 @@ export class EnhancedGEOSnippetGenerator {
 
     const categoryDisplaySafe =
       config.categoryDisplay ||
-      this.getCategoryData(config.category)?.display ||
+      this.getCategoryData(config.category)?.title ||
       (this.getCategoryData(config.category) as any)?.title ||
       config.category;
     const categoryDisplayLower = String(categoryDisplaySafe).toLowerCase();

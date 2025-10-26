@@ -5,14 +5,14 @@ import Tab from './Tab';
 export default function Tabs({ children }: { children: ReactElement[] }) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const arrayChildren = Children.toArray(children) as ReactElement[];
-  const activeTabContent = arrayChildren[activeTabIndex]?.props?.children;
+  const activeTabContent = (arrayChildren[activeTabIndex]?.props as any)?.children;
 
   return (
     <>
       <ul className="not-prose mb-6 pb-[1px] flex-none min-w-full overflow-auto border-b border-zinc-200 space-x-6 flex dark:border-zinc-200/10">
         {arrayChildren.map((child: ReactElement, i: number) => (
           <li className="cursor-pointer" onClick={() => setActiveTabIndex(i)}>
-            <Tab title={child?.props?.title ?? 'Tab Title'} isActive={i === activeTabIndex} />
+            <Tab title={(child?.props as any)?.title ?? 'Tab Title'} isActive={i === activeTabIndex} />
           </li>
         ))}
       </ul>

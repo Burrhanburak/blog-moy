@@ -27,7 +27,7 @@ export interface CompetitorActivity {
   recommendedActions: string[];
 }
 
-export interface SearchConsolePa {
+export interface SearchConsoleData {
   url: string;
   clicks: number;
   impressions: number;

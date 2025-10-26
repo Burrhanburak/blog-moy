@@ -231,7 +231,7 @@ export function isValidLocaleForCountry(
  * Generate static params for all countries with all supported locales
  */
 export function generateCountryParams() {
-  return getAllCountries().map((country) => ({
+  return getAllCountries().map((country: any) => ({
     country: country.slug,
   }));
 }
@@ -242,8 +242,8 @@ export function generateCountryParams() {
 export function generateStateParams() {
   const params: Array<{ country: string; state: string }> = [];
 
-  getAllCountries().forEach((country) => {
-    country.states.forEach((state) => {
+  getAllCountries().forEach((country: any) => {
+    country.states.forEach((state: any) => {
       params.push({
         country: country.slug,
         state: state.slug,
@@ -260,9 +260,9 @@ export function generateStateParams() {
 export function generateCityParams() {
   const params: Array<{ country: string; state: string; city: string }> = [];
 
-  getAllCountries().forEach((country) => {
-    country.states.forEach((state) => {
-      state.cities.forEach((city) => {
+  getAllCountries().forEach((country: any) => {
+    country.states.forEach((state: any) => {
+      state.cities.forEach((city: any) => {
         params.push({
           country: country.slug,
           state: state.slug,
@@ -288,9 +288,9 @@ export function generateCategoryParams() {
     category: string;
   }> = [];
 
-  getAllCountries().forEach((country) => {
-    country.states.forEach((state) => {
-      state.cities.forEach((city) => {
+  getAllCountries().forEach((country: any) => {
+    country.states.forEach((state: any) => {
+      state.cities.forEach((city: any) => {
         categoryList.forEach((category) => {
           params.push({
             country: country.slug,
@@ -317,8 +317,8 @@ export function generateCountryCategoryParams() {
     category: string;
   }> = [];
 
-  getAllCountries().forEach((country) => {
-    categoryList.forEach((category) => {
+  getAllCountries().forEach((country: any) => {
+    categoryList.forEach((category: any) => {
       params.push({
         country: country.slug,
         category: category.key,
@@ -340,8 +340,8 @@ export function generateCountrySlugParams() {
     slug: string;
   }> = [];
 
-  getAllCountries().forEach((country) => {
-    country.states.forEach((state) => {
+  getAllCountries().forEach((country: any) => {
+    country.states.forEach((state: any) => {
       params.push({
         country: country.slug,
         slug: state.slug,

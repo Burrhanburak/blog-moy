@@ -1,7 +1,5 @@
 import type { MDXComponents } from "mdx/types";
 import React from "react";
-import { Intro } from "./shared/Intro";
-import { CtaMiniForm } from "./shared/CtaMiniForm";
 import { CustomCard } from "@/components/CustomCard";
 import CardGrid from "@/components/CardGrid";
 // Lucide React Icons
@@ -159,8 +157,6 @@ function P({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
 
 const components: MDXComponents = {
   // Custom Components
-  Intro,
-  CtaMiniForm,
   CustomCard,
   CardGrid,
   Compare,
@@ -172,9 +168,6 @@ const components: MDXComponents = {
   QuickCallout,
   WarningCallout,
   ProCallout,
-  // Utility Functions
-  buildLocationUrl,
-  generateServiceDescription,
   // Mintlify Components
   Info,
   Warning,
@@ -190,8 +183,12 @@ const components: MDXComponents = {
   Button,
   Frame,
   Tooltip,
-  // Lucide React Icons
-  ...LucideIcons,
+  // Lucide React Icons (only components)
+  ...Object.fromEntries(
+    Object.entries(LucideIcons).filter(([key, value]) => 
+      typeof value === 'function' && key !== 'createLucideIcon'
+    )
+  ),
   // Alias commonly used MDX tag to our snippet callout
   Callout: SnippetCallout,
   h1: H1,

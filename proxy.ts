@@ -6,7 +6,7 @@ export const config = {
   matcher: "/",
 };
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const geo = geolocation(req);
   const url = req.nextUrl.clone();
 

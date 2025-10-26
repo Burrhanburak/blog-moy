@@ -14,7 +14,7 @@ export default function Variation({ city, category }: VariationProps) {
     `If you’re in ${city} and need ${category}, here’s your complete guide.`
   ];
 
-  const seed = getVariationSeed(city, category, variants.length);
+  const seed = getVariationSeed(city, category, 'en', variants.length);
   const variantText = pickVariant(variants, seed);
 
   return <p>{variantText}</p>;

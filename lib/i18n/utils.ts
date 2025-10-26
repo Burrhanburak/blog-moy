@@ -150,6 +150,136 @@ export function getContentVariation(
         `{city}s best vurderte {category} tjenester er bare et klikk unna.`,
         `Hvis du er i {city} og trenger {category}, her er din komplette guide.`
       ]
+    },
+    cta: {
+      en: [
+        `Get started with {category} in {city} today`,
+        `Contact our {city} {category} experts`,
+        `Request a quote for {category} in {city}`,
+        `Start your {category} project in {city}`,
+        `Learn more about our {city} {category} services`
+      ],
+      de: [
+        `Starten Sie heute mit {category} in {city}`,
+        `Kontaktieren Sie unsere {city} {category} Experten`,
+        `Fordern Sie ein Angebot für {category} in {city} an`,
+        `Starten Sie Ihr {category} Projekt in {city}`,
+        `Erfahren Sie mehr über unsere {city} {category} Services`
+      ],
+      fr: [
+        `Commencez avec {category} à {city} aujourd'hui`,
+        `Contactez nos experts {category} de {city}`,
+        `Demandez un devis pour {category} à {city}`,
+        `Lancez votre projet {category} à {city}`,
+        `En savoir plus sur nos services {category} à {city}`
+      ],
+      ar: [
+        `ابدأ مع {category} في {city} اليوم`,
+        `اتصل بخبراء {category} في {city}`,
+        `اطلب عرض أسعار لـ {category} في {city}`,
+        `ابدأ مشروع {category} في {city}`,
+        `تعرف على المزيد حول خدمات {category} في {city}`
+      ],
+      nl: [
+        `Begin vandaag met {category} in {city}`,
+        `Neem contact op met onze {city} {category} experts`,
+        `Vraag een offerte aan voor {category} in {city}`,
+        `Start uw {category} project in {city}`,
+        `Meer informatie over onze {city} {category} diensten`
+      ],
+      ja: [
+        `{city}で{category}を今日始めましょう`,
+        `{city}の{category}専門家にお問い合わせください`,
+        `{city}の{category}の見積もりをリクエスト`,
+        `{city}で{category}プロジェクトを開始`,
+        `{city}の{category}サービスについて詳しく知る`
+      ],
+      ko: [
+        `오늘 {city}에서 {category}를 시작하세요`,
+        `{city} {category} 전문가에게 문의하세요`,
+        `{city}의 {category} 견적을 요청하세요`,
+        `{city}에서 {category} 프로젝트를 시작하세요`,
+        `{city}의 {category} 서비스에 대해 자세히 알아보세요`
+      ],
+      sv: [
+        `Kom igång med {category} i {city} idag`,
+        `Kontakta våra {city} {category} experter`,
+        `Begär en offert för {category} i {city}`,
+        `Starta ditt {category} projekt i {city}`,
+        `Läs mer om våra {city} {category} tjänster`
+      ],
+      no: [
+        `Kom i gang med {category} i {city} i dag`,
+        `Kontakt våre {city} {category} eksperter`,
+        `Be om tilbud for {category} i {city}`,
+        `Start ditt {category} prosjekt i {city}`,
+        `Lær mer om våre {city} {category} tjenester`
+      ]
+    },
+    benefit: {
+      en: [
+        `Professional {category} services in {city}`,
+        `Experienced {category} team in {city}`,
+        `Top-rated {category} solutions for {city}`,
+        `Custom {category} approach in {city}`,
+        `Proven {category} results in {city}`
+      ],
+      de: [
+        `Professionelle {category} Services in {city}`,
+        `Erfahrenes {category} Team in {city}`,
+        `Top-bewertete {category} Lösungen für {city}`,
+        `Maßgeschneiderter {category} Ansatz in {city}`,
+        `Bewährte {category} Ergebnisse in {city}`
+      ],
+      fr: [
+        `Services {category} professionnels à {city}`,
+        `Équipe {category} expérimentée à {city}`,
+        `Solutions {category} les mieux notées pour {city}`,
+        `Approche {category} personnalisée à {city}`,
+        `Résultats {category} prouvés à {city}`
+      ],
+      ar: [
+        `خدمات {category} احترافية في {city}`,
+        `فريق {category} ذو خبرة في {city}`,
+        `حلول {category} عالية التقييم لـ {city}`,
+        `نهج {category} مخصص في {city}`,
+        `نتائج {category} مثبتة في {city}`
+      ],
+      nl: [
+        `Professionele {category} diensten in {city}`,
+        `Ervaren {category} team in {city}`,
+        `Top-beoordeelde {category} oplossingen voor {city}`,
+        `Op maat gemaakte {category} aanpak in {city}`,
+        `Bewezen {category} resultaten in {city}`
+      ],
+      ja: [
+        `{city}のプロフェッショナル{category}サービス`,
+        `{city}の経験豊富な{category}チーム`,
+        `{city}向けトップ評価{category}ソリューション`,
+        `{city}でのカスタム{category}アプローチ`,
+        `{city}での実証済み{category}結果`
+      ],
+      ko: [
+        `{city}의 전문 {category} 서비스`,
+        `{city}의 경험 많은 {category} 팀`,
+        `{city}를 위한 최고 평점 {category} 솔루션`,
+        `{city}에서의 맞춤형 {category} 접근법`,
+        `{city}에서 입증된 {category} 결과`
+      ],
+      sv: [
+        `Professionella {category} tjänster i {city}`,
+        `Erfaret {category} team i {city}`,
+        `Toppbetyg {category} lösningar för {city}`,
+        `Skräddarsydd {category} metod i {city}`,
+        `Beprövade {category} resultat i {city}`
+      ],
+      no: [
+        `Profesjonelle {category} tjenester i {city}`,
+        `Erfart {category} team i {city}`,
+        `Toppvurderte {category} løsninger for {city}`,
+        `Skreddersydd {category} tilnærming i {city}`,
+        `Dokumenterte {category} resultater i {city}`
+      ]
     }
   };
 
