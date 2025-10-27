@@ -16,9 +16,6 @@ interface CompareIndexProps {
 }
 
 const countryName = "Canada";
-// Next.js 16: Enhanced revalidation
-export const revalidate = 60 * 60 * 24; // 1 day
-export const dynamic = "force-static";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

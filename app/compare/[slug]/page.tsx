@@ -13,10 +13,6 @@ interface ComparePageProps {
   }>;
 }
 
-// Next.js 16: Enhanced revalidation with cache tags
-export const revalidate = 60 * 60 * 24 * 7; // 7 days
-export const dynamic = "force-static";
-
 export async function generateStaticParams() {
   const slugs = generateComparisonStaticParams();
   return slugs.map((slug) => ({

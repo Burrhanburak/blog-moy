@@ -6,7 +6,7 @@
     "dev": "contentlayer dev & next dev --turbopack",
     "contentlayer": "contentlayer build",
     "prebuild": "contentlayer build",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "mcp:next-devtools": "npx -y next-devtools-mcp@latest",
