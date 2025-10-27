@@ -9,7 +9,6 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
   // Make sure locale is properly passed
   reactStrictMode: true,
-  distDir: "build",
   // Next.js 16: React Compiler (stable) - disabled for now
   // reactCompiler: true,
   env: {
