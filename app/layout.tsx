@@ -51,6 +51,13 @@ export const metadata: Metadata = {
     "Social Media Strategy",
     "Social Media Management",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 // helper
