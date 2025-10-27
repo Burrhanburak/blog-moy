@@ -29,29 +29,9 @@ author:
     - "https://twitter.com/moydus"
     - "https://www.facebook.com/moydus"
 
-# Dynamic Content (AI-Generated)
+# Dynamic Content (AI-Generated) - Minimal for performance
 dynamic:
   title: "{dynamicTitle}"
-  meta:
-    title: "{dynamicMetaTitle}"
-    description: "{dynamicMetaDescription}"
-  og:
-    title: "{dynamicOGTitle}"
-    description: "{dynamicOGDescription}"
-    image: "/api/og?city={citySlug}&category={categoryKey}"
-  twitter:
-    title: "{categoryDisplay} in {city} — Fast & Effective"
-    description: "{categoryTargetAudience} in {city}. {categoryTimeline} launch. Proven results."
-    image: "/api/og?city={citySlug}&category={categoryKey}&type=twitter"
-  keywords:
-    primary: { dynamicPrimaryKeywords }
-    secondary: { dynamicSecondaryKeywords }
-  categories: { dynamicCategories }
-  services: { servicesList }
-  faqs: { dynamicFAQs }
-  testimonials: { dynamicTestimonials }
-  relatedServices: { dynamicRelatedServices }
-  cta: { dynamicCTAConfig }
   snippet: "{dynamicSnippet}"
 
 # Content Settings
@@ -60,16 +40,13 @@ structuredData: true
 priceRange: "{categoryPrice}"
 timeline: "{categoryTimeline}"
 targetAudience: "{categoryTargetAudience}"
-currency: "{currencyCode}"
-currencySymbol: "{currencySymbol}"
-timeZone: "{timeZone}"
 ---
 
 import { Hero } from "@/components/sections/Hero";
 import { WhyChoose } from "@/components/sections/WhyChoose";
 import { MarketInsights } from "@/components/sections/MarketInsights";
 import { Process } from "@/components/sections/Process";
-import { Compare } from "@/components/sections/Compare";
+import { Compare } from "@/components/mdx/enhanced/Compare";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";

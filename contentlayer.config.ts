@@ -46,10 +46,17 @@ const normalizedLocaleFilter = hasLocaleFilter
   ? localeFilter.filter((locale) => SUPPORTED_LOCALES.includes(locale))
   : SUPPORTED_LOCALES;
 
-const contentDirInclude =
-  normalizedLocaleFilter.length > 0
-    ? Array.from(new Set([...normalizedLocaleFilter, "_templates", "blog"]))
-    : ["_templates", "blog"];
+// Include all country directories from content folder
+const contentDirInclude = fs.existsSync(contentRoot)
+  ? Array.from(
+      new Set([
+        ...fs
+          .readdirSync(contentRoot, { withFileTypes: true })
+          .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
+          .map((entry) => entry.name),
+      ])
+    )
+  : ["_templates", "blog"];
 
 const normalizedCategoryFilter = hasCategoryFilter
   ? Array.from(
@@ -178,7 +185,7 @@ if (process.env.DEBUG_CONTENTLAYER_FILTERS === "true") {
 
 export const City = defineDocumentType(() => ({
   name: "City",
-  filePathPattern: `!(blog)/**/*/*/*/*.mdx`,
+  filePathPattern: `*/*/*/*.mdx`,
   contentType: "mdx",
   fields: {
     title: { type: "string", required: false },

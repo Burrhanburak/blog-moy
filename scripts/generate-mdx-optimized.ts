@@ -7,19 +7,19 @@ import {
   type CategoryConfig,
 } from "../config/categories-new";
 
-export const topCategories = [
-  "web-design",
-  "custom-web-development",
-  "digital-marketing",
-  "seo-services",
-  "local-seo",
-  "ecommerce-development",
-  "branding",
-  "content-marketing",
-  "app-development",
-  "ui-ux-design",
-  "custom-panel-development", // 👈 yeni eklendi
-];
+// export const topCategories = [
+//   "web-design",
+//   "custom-web-development",
+//   "digital-marketing",
+//   "seo-services",
+//   "local-seo",
+//   "ecommerce-development",
+//   "branding",
+//   "content-marketing",
+//   "app-development",
+//   "ui-ux-design",
+//   "custom-panel-development", // 👈 yeni eklendi
+// ];
 
 // ✅ Load data and template
 const data = JSON.parse(fs.readFileSync("data/priorityCountries.json", "utf8"));
@@ -36,6 +36,8 @@ const categories = allCategories; // Use all 25 categories
 
 let totalGenerated = 0;
 let totalSkipped = 0;
+
+const wrapAsJSX = (content: string): string => `{${content}}`;
 
 // Dynamic content generation functions
 function generateDynamicTitle(
@@ -600,12 +602,7 @@ function generateDynamicPricingSection(
     pricingTemplates[category.key as keyof typeof pricingTemplates] ||
     pricingTemplates["web-design"];
 
-  return `<div className="bg-white rounded-lg shadow-md p-8 mb-12">
-  <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-    Transparent Pricing for ${city} Businesses
-  </h2>
-
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  return `<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
     <div className="border border-gray-200 rounded-lg p-6 text-center">
       <h3 className="text-xl font-semibold text-gray-900 mb-2">${
         packages.starter.name
@@ -655,16 +652,6 @@ function generateDynamicPricingSection(
           .join("\n        ")}
       </ul>
     </div>
-  </div>
-
-  <div className="text-center mt-8">
-    <a
-      href="https://moydus.com/contact"
-      className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-    >
-      Get Custom Quote
-    </a>
-  </div>
 </div>`;
 }
 
@@ -696,30 +683,6 @@ function generateDynamicMarketInsights(
       .map((insight) => `<p className="text-gray-700">${insight}</p>`)
       .join("\n    ")}
   </div>
-</div>
-
-<div className="bg-white rounded-lg shadow-md p-6 mb-8">
-  <h3 className="text-xl font-semibold text-gray-900 mb-4">
-    Pricing Insights for ${city}
-  </h3>
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div>
-      <h4 className="font-semibold text-gray-900">Average Investment</h4>
-      <p className="text-gray-600">${category.priceRange}</p>
-    </div>
-    <div>
-      <h4 className="font-semibold text-gray-900">Typical Timeline</h4>
-      <p className="text-gray-600">${category.timeline}</p>
-    </div>
-    <div>
-      <h4 className="font-semibold text-gray-900">ROI Timeline</h4>
-      <p className="text-gray-600">3-6 months</p>
-    </div>
-    <div>
-      <h4 className="font-semibold text-gray-900">Success Rate</h4>
-      <p className="text-gray-600">95% of ${city} clients</p>
-    </div>
-  </div>
 </div>`;
 }
 
@@ -748,9 +711,7 @@ function generateDynamicCTAConfig(
   const selectedCTA =
     ctaVariations[Math.floor(Math.random() * ctaVariations.length)];
 
-  return `  primary: "${selectedCTA.primary}"
-  secondary: "${selectedCTA.secondary}"
-  ctaUrl: "${selectedCTA.ctaUrl}"`;
+  return `{{ primary: "${selectedCTA.primary}", secondary: "${selectedCTA.secondary}", ctaUrl: "${selectedCTA.ctaUrl}" }}`;
 }
 
 function generateDynamicTestimonialsSection(
@@ -1017,9 +978,8 @@ filteredData.forEach((country: Country) => {
             cityName,
             cat
           );
-          const dynamicBenefitsGrid = generateDynamicBenefitsGrid(
-            cityName,
-            cat
+          const dynamicBenefitsGrid = wrapAsJSX(
+            generateDynamicBenefitsGrid(cityName, cat)
           );
           const dynamicCategories = generateDynamicCategories(
             cityName,
@@ -1028,16 +988,43 @@ filteredData.forEach((country: Country) => {
             cat
           );
           const dynamicRelatedServices = generateDynamicRelatedServices(cat);
-          const dynamicProcessSteps = generateDynamicProcessSteps(
+          const dynamicProcessSteps = wrapAsJSX(
+            generateDynamicProcessSteps(cityName, cat)
+          );
+          const dynamicPricingPackages = generateDynamicPricingSection(
             cityName,
             cat
           );
-          const dynamicMarketInsights = generateDynamicMarketInsights(
-            cityName,
-            state.state,
-            cat
+          const dynamicMarketInsights = wrapAsJSX(
+            generateDynamicMarketInsights(cityName, state.state, cat)
           );
           const dynamicCTAConfig = generateDynamicCTAConfig(cityName, cat);
+
+          // Get nearby cities
+          const otherCities = limitedCities.filter(c => {
+            const name = typeof c === 'string' ? c : c.name;
+            return name !== cityName;
+          }).slice(0, 3);
+
+          const nearbyCity1 = otherCities[0] ? (typeof otherCities[0] === 'string' ? otherCities[0] : otherCities[0].name) : cityName;
+          const nearbyCity2 = otherCities[1] ? (typeof otherCities[1] === 'string' ? otherCities[1] : otherCities[1].name) : cityName;
+          const nearbyCity3 = otherCities[2] ? (typeof otherCities[2] === 'string' ? otherCities[2] : otherCities[2].name) : cityName;
+
+          const nearbyCity1Slug = slugify(nearbyCity1);
+          const nearbyCity2Slug = slugify(nearbyCity2);
+          const nearbyCity3Slug = slugify(nearbyCity3);
+
+          const nearbyCity1Distance = '15-30 km';
+          const nearbyCity2Distance = '20-40 km';
+          const nearbyCity3Distance = '25-50 km';
+
+          // Currency and timezone defaults
+          const currencyCode = country.currency || 'USD';
+          const currencySymbol = currencyCode === 'USD' ? '$' : currencyCode === 'EUR' ? '€' : currencyCode === 'GBP' ? '£' : '$';
+          const timeZone = country.iso2 === 'US' ? 'America/New_York' : country.iso2 === 'GB' ? 'Europe/London' : 'UTC';
+
+          const todayISO = new Date().toISOString().split("T")[0];
+          const todayISOWithSpaces = todayISO.replace(/-/g, " - ");
 
           const filled = template
             .replace(/{dynamicTitle}/g, dynamicTitle)
@@ -1056,15 +1043,18 @@ filteredData.forEach((country: Country) => {
             .replace(/{dynamicCategories}/g, dynamicCategories)
             .replace(/{dynamicRelatedServices}/g, dynamicRelatedServices)
             .replace(/{dynamicProcessSteps}/g, dynamicProcessSteps)
+            .replace(/{dynamicPricingPackages}/g, dynamicPricingPackages)
             .replace(/{dynamicMarketInsights}/g, dynamicMarketInsights)
             .replace(/{dynamicCTAConfig}/g, dynamicCTAConfig)
             .replace(
               /{dynamicTestimonialsSection}/g,
-              generateDynamicTestimonialsSection(cityName, cat)
+              wrapAsJSX(generateDynamicTestimonialsSection(cityName, cat))
             )
             .replace(
               /{dynamicFAQSection}/g,
-              generateDynamicFAQSection(cityName, state.state, cat)
+              wrapAsJSX(
+                generateDynamicFAQSection(cityName, state.state, cat)
+              )
             )
             .replace(/{categoryTitle}/g, cat.title)
             .replace(/{categoryDisplay}/g, cat.title)
@@ -1091,7 +1081,19 @@ filteredData.forEach((country: Country) => {
             .replace(/{stateCode}/g, locationMeta.stateCode)
             .replace(/{currentDate}/g, todayISO)
             .replace(/{YYYY-MM-DD}/g, todayISO)
-            .replace(/{YYYY - MM - DD}/g, todayISOWithSpaces);
+            .replace(/{YYYY - MM - DD}/g, todayISOWithSpaces)
+            .replace(/{nearbyCity1}/g, nearbyCity1)
+            .replace(/{nearbyCity2}/g, nearbyCity2)
+            .replace(/{nearbyCity3}/g, nearbyCity3)
+            .replace(/{nearbyCity1Slug}/g, nearbyCity1Slug)
+            .replace(/{nearbyCity2Slug}/g, nearbyCity2Slug)
+            .replace(/{nearbyCity3Slug}/g, nearbyCity3Slug)
+            .replace(/{nearbyCity1Distance}/g, nearbyCity1Distance)
+            .replace(/{nearbyCity2Distance}/g, nearbyCity2Distance)
+            .replace(/{nearbyCity3Distance}/g, nearbyCity3Distance)
+            .replace(/{currencyCode}/g, currencyCode)
+            .replace(/{currencySymbol}/g, currencySymbol)
+            .replace(/{timeZone}/g, timeZone);
 
           const outPath = path.join(fileDir, `${cat.key}.mdx`);
           fs.writeFileSync(outPath, filled, "utf8");

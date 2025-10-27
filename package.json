@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "contentlayer dev & next dev --turbopack",
-    "contentlayer": "contentlayer build",
-    "prebuild": "contentlayer build",
-    "build": "next build",
+    "contentlayer": "NODE_OPTIONS='--max-old-space-size=8192' contentlayer build",
+    "prebuild": "NODE_OPTIONS='--max-old-space-size=8192' contentlayer build",
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' next build",
     "start": "next start",
     "lint": "eslint",
     "mcp:next-devtools": "npx -y next-devtools-mcp@latest",
