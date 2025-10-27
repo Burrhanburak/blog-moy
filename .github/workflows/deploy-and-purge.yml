@@ -1,0 +1,40 @@
+name: Deploy & Purge Cloudflare Cache
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚀 Trigger Vercel Deploy
+        run: |
+          echo "Triggering Vercel deployment..."
+          curl -X POST "https://api.vercel.com/v1/integrations/deploy/prj_S2oLxGOx61q6RR4gO4u6qBYJrdK1/Ad8AB5DP7l"
+
+      - name: ⏳ Wait for deployment to finish
+        run: |
+          echo "Waiting 60 seconds for Vercel deployment to complete..."
+          sleep 60
+
+      - name: 🔥 Purge Cloudflare Cache
+        run: |
+          echo "Purging Cloudflare cache..."
+          response=$(curl -s -X POST "https://blog.moydus.com/api/purge-cloudflare")
+          echo "Response: $response"
+
+          # Check if purge was successful
+          if echo "$response" | grep -q "success"; then
+            echo "✅ Cloudflare cache purged successfully!"
+          else
+            echo "❌ Cache purge failed!"
+            exit 1
+          fi
+
+      - name: ✅ Deployment Complete
+        run: |
+          echo "🎉 Deployment and cache purge completed successfully!"
+          echo "Site: https://blog.moydus.com"
