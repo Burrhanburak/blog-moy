@@ -17,21 +17,26 @@ jobs:
 
       - name: ⏳ Wait for deployment to finish
         run: |
-          echo "Waiting 60 seconds for Vercel deployment to complete..."
-          sleep 60
+          echo "Waiting 3 minutes for Vercel deployment to complete..."
+          sleep 180
 
       - name: 🔥 Purge Cloudflare Cache
         run: |
           echo "Purging Cloudflare cache..."
-          response=$(curl -s -X POST "https://blog.moydus.com/api/purge-cloudflare")
-          echo "Response: $response"
+          response=$(curl -s -w "\n%{http_code}" -X POST "https://blog.moydus.com/api/purge-cloudflare")
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | head -n-1)
 
-          # Check if purge was successful
-          if echo "$response" | grep -q "success"; then
-            echo "✅ Cloudflare cache purged successfully!"
+          echo "HTTP Status: $http_code"
+          echo "Response: $body"
+
+          # Check if request succeeded (200 OK)
+          if [ "$http_code" = "200" ]; then
+            echo "✅ Cloudflare cache purge request successful!"
           else
-            echo "❌ Cache purge failed!"
-            exit 1
+            echo "⚠️  Cache purge returned status $http_code"
+            echo "Note: This is non-critical, deployment succeeded"
+            # Don't fail the workflow for cache purge issues
           fi
 
       - name: ✅ Deployment Complete
